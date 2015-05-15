@@ -206,7 +206,9 @@ module Swagger
         end
 
         def get_settings(api_version, config)
-          base_path = trim_trailing_slash(config[:base_path] || "")
+          # Don't cut base_path trailing slashes automatically let user decide if they want a trailing slash or not.
+          # base_path = trim_trailing_slash(config[:base_path] || "")
+          base_path = config[:base_path] || ""
           controller_base_path = trim_leading_slash(config[:controller_base_path] || "")
           base_path += "/#{controller_base_path}" unless controller_base_path.empty?
           api_file_path = config[:api_file_path]
